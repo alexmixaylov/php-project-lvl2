@@ -1,0 +1,18 @@
+{
+    "name": "hexlet/code",
+    "description": "Hexlet project. Level 2",
+    "autoload": {
+        "psr-4": {
+            "Hexlet\\Code\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "alexmixaylov",
+            "email": "alexmixaylov@gmail.com"
+        }
+    ],
+    "require": {
+        "docopt/docopt": "^1.0"
+    }
+}
