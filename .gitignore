@@ -2,7 +2,3 @@
 /vendor/
 /docker-compose.yaml
 /docker
-
-#phpunit
-bin/.phpunit.result.cache
-.phpunit.result.cache
