@@ -15,10 +15,7 @@
     "autoload": {
         "psr-4": {
             "Hexlet\\Code\\": "src/"
-        },
-        "files": [
-            "src/Functions.php"
-        ]
+        }
     },
     "authors": [
         {
@@ -29,7 +26,9 @@
     "require": {
         "php": "8.*",
         "docopt/docopt": "^1.0",
-        "ext-json": "*"
+        "ext-json": "*",
+      "ext-fileinfo": "*",
+        "symfony/yaml": "^6.1"
     },
     "require-dev": {
         "squizlabs/php_codesniffer": "^3.6",

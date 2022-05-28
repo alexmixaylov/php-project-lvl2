@@ -10,6 +10,7 @@ function genDiff(string $file1, string $file2): string
 
 function getNormalizedContent(string $path): array
 {
+    var_dump(file_get_contents($path));
     $arr = json_decode(file_get_contents($path), true);
     ksort($arr);
 
