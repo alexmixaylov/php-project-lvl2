@@ -26,6 +26,9 @@ jobs:
         with:
           hexlet-id: ${{ secrets.HEXLET_ID }}
 
+      - name: Gendiff Install
+        run: make install
+
       - name: Run test & publish code coverage
         uses: paambaati/codeclimate-action@v2.6.0
         # Add Code Climate secret key
