@@ -3,6 +3,9 @@
     "description": "Hexlet project. Level 2",
     "minimum-stability": "dev",
     "prefer-stable": true,
+    "scripts": {
+        "test": "phpunit tests"
+    },
     "bin": [
         "bin/gendiff"
     ],

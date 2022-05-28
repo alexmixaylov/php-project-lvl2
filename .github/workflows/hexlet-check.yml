@@ -27,7 +27,10 @@ jobs:
           hexlet-id: ${{ secrets.HEXLET_ID }}
 
       - name: Gendiff Install
-        run: make install
+        run: make install && make lint
+
+      - name: Gendiff Lint
+        run: make lint
 
       - name: Run test & publish code coverage
         uses: paambaati/codeclimate-action@v2.6.0
@@ -35,6 +38,6 @@ jobs:
         env:
           CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
         with:
-          coverageCommand: make lint
+          coverageCommand: make test-coverage
           coverageLocations: ${{github.workplace}}/build/logs/clover.xml:clover
           debug: true
