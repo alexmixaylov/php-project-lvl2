@@ -23,7 +23,7 @@ foreach ($result as $k=>$v) {
 }
 
 try {
-    App::genDiff($argv[1], $argv[2]);
+    print_r(App::genDiff($argv[1], $argv[2]) . PHP_EOL);
 } catch (Exception $e) {
     print_r($e->getMessage());
 }
