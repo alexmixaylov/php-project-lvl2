@@ -3,7 +3,7 @@
 <?php
 require __DIR__.'/../vendor/autoload.php';
 
-use function Hexlet\Code\genDiff;
+use Hexlet\Code\App;
 
 $doc = <<<'DOCOPT'
 Usage:
@@ -22,4 +22,8 @@ foreach ($result as $k=>$v) {
     //echo $k.': '.json_encode($v).PHP_EOL;
 }
 
-genDiff($argv[1], $argv[2]);
+try {
+    App::genDiff($argv[1], $argv[2]);
+} catch (Exception $e) {
+    print_r($e->getMessage());
+}
