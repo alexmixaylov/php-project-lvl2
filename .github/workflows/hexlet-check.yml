@@ -27,7 +27,7 @@ jobs:
           hexlet-id: ${{ secrets.HEXLET_ID }}
 
       - name: Gendiff Install
-        run: make install && make lint
+        run: make install
 
       - name: Gendiff Lint
         run: make lint

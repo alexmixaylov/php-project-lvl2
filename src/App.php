@@ -5,7 +5,8 @@ namespace Hexlet\Code;
 use Hexlet\Code\Helper\Parsers;
 use Hexlet\Code\Exceptions\NotCriticalException;
 
-class App {
+class App
+{
     /**
      * @throws \Exception
      */
