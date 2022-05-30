@@ -39,5 +39,5 @@ jobs:
           CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
         with:
           coverageCommand: make test-coverage
-          coverageLocations: ${{github.workplace}}/build/logs/clover.xml:clover
+          coverageLocations: /home/runner/work/php-project-lvl2/php-project-lvl2/build/logs/clover.xml:clover
           debug: true
