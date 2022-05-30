@@ -27,7 +27,7 @@
         "php": "8.*",
         "docopt/docopt": "^1.0",
         "ext-json": "*",
-      "ext-fileinfo": "*",
+        "ext-fileinfo": "*",
         "symfony/yaml": "*"
     },
     "require-dev": {
