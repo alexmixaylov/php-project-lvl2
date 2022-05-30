@@ -23,7 +23,7 @@ foreach ($result as $k=>$v) {
 }
 
 try {
-    print_r(App::genDiff( __DIR__ . '/' . $argv[1], __DIR__ . '/' . $argv[2]) . PHP_EOL);
+    print_r(App::genDiff( $argv[1], $argv[2]) . PHP_EOL);
 } catch (Exception $e) {
     print_r($e->getMessage());
 }

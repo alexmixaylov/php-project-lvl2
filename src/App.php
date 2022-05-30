@@ -13,7 +13,10 @@ class App
     public static function genDiff($file1, $file2): string
     {
         try {
-            $result = self::compare(Parsers::parse($file1), Parsers::parse($file2));
+            $result = self::compare(
+                self::normalize(Parsers::parse($file1)),
+                self::normalize(Parsers::parse($file2))
+            );
             return '{' . PHP_EOL . implode(PHP_EOL, $result) . PHP_EOL . '}';
         } catch (NotCriticalException $e) {
             print_r("WARNING: " . $e->getMessage() . PHP_EOL);
@@ -21,6 +24,28 @@ class App
         } catch (\Exception $e) {
             throw $e;
         }
+    }
+
+    private static function normalize(array $arr): array
+    {
+//        $func = function (array $arr, int $cnt) use (&$func) {
+//
+//
+//            return $func();
+//        };
+
+
+//        $func($arr, count($arr));
+
+        ksort($arr);
+
+        return array_map(function ($key, $value) {
+            if (is_bool($value)) {
+                $value = $value ? 'true' : 'false';
+            }
+
+            return "$key: $value";
+        }, array_keys($arr), $arr);
     }
 
     private static function compare(array $arr1, array $arr2): array
