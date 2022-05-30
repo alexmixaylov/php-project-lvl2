@@ -32,6 +32,9 @@ jobs:
       - name: Gendiff Lint
         run: make lint
 
+      - name: Set codeclimate prefix
+        run: |
+          echo "CC_PREFIX=$(go list -m)" >> $GITHUB_ENV
       - name: Run test & publish code coverage
         uses: paambaati/codeclimate-action@v2.6.0
         # Add Code Climate secret key
@@ -40,4 +43,5 @@ jobs:
         with:
           coverageCommand: make test-coverage
           coverageLocations: ${{github.workplace}}/build/logs/clover.xml:clover
+          prefix: ${{ env.CC_PREFIX }}
           debug: true
