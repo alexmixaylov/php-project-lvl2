@@ -1,9 +1,10 @@
 #!/usr/bin/env php
 
 <?php
-require __DIR__.'/../vendor/autoload.php';
+require __DIR__ . '/../vendor/autoload.php';
 
 use Hexlet\Code\App;
+use Hexlet\Code\Exceptions\NotCriticalException;
 
 $doc = <<<'DOCOPT'
 Usage:
@@ -17,18 +18,20 @@ Options:
   --format <fmt>                Report format [default: stylish]
 DOCOPT;
 
-$result = Docopt::handle($doc, array('version'=>'1.0.0'));
-foreach ($result as $k=>$v) {
+$result = Docopt::handle($doc, array('version' => '1.0.0'));
+foreach ($result as $k => $v) {
     //echo $k.': '.json_encode($v).PHP_EOL;
 }
 
 $formatIndex = array_search('--format', $argv);
 $format = $formatIndex ? $argv[$formatIndex + 1] : null;
-$file1 =  $formatIndex ? $argv[$formatIndex + 2] : $argv[1];
-$file2 =  $formatIndex ? $argv[$formatIndex + 3] : $argv[2];
+$file1 = $formatIndex ? $argv[$formatIndex + 2] : $argv[1];
+$file2 = $formatIndex ? $argv[$formatIndex + 3] : $argv[2];
 
 try {
     print_r(App::genDiff($file1, $file2, $format));
+} catch (NotCriticalException $e) {
+    print_r('WARNING | ' . $e->getMessage() . PHP_EOL);
 } catch (Exception $e) {
-    print_r($e->getMessage());
+    throw $e;
 }

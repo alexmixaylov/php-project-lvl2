@@ -1,5 +1,6 @@
 <?php
 
+use Hexlet\Code\Exceptions\InvalidFormatterException;
 use PHPUnit\Framework\TestCase;
 use Hexlet\Code\App;
 
@@ -29,6 +30,21 @@ class FunctionsTest extends TestCase
         $diff = trim(file_get_contents($this->fixtures . 'yaml/expected.txt'));
 
         $this->assertEquals($diff, App::genDiff($file1, $file2));
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function testFormatter(): void
+    {
+        $file1 = $this->fixtures . 'yaml/file1.yml';
+        $file2 = $this->fixtures . 'yaml/file2.yml';
+        $diff = trim(file_get_contents($this->fixtures . 'yaml/expected.txt'));
+
+        $this->assertEquals($diff, App::genDiff($file1, $file2, 'stylish'));
+
+        $this->expectException(InvalidFormatterException::class);
+        $this->assertEquals($diff, App::genDiff($file1, $file2, 'wrong formatter'));
     }
 
 //    /**

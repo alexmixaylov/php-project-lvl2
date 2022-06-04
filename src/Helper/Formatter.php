@@ -2,7 +2,7 @@
 
 namespace Hexlet\Code\Helper;
 
-use Hexlet\Code\Exceptions\NotCriticalException;
+use Hexlet\Code\Exceptions\InvalidFormatterException;
 
 class Formatter
 {
@@ -11,16 +11,21 @@ class Formatter
     /**
      * @throws \Exception
      */
-    public static function format(array $data, string $formatter = self::STYLISH_FORMATTER): string
+    public static function format(array $data, ?string $formatter): string
     {
-        return match ($formatter) {
+        return match ($formatter ?? self::STYLISH_FORMATTER) {
             self::STYLISH_FORMATTER => self::stylish($data),
-            default => throw new NotCriticalException("Invalid formatter: $formatter"),
+            default => self::printException($formatter),
         };
     }
 
     private static function stylish(array $data): string
     {
         return '{' . PHP_EOL . implode(PHP_EOL, $data) . PHP_EOL . '}';
+    }
+
+    private static function printException(string $formatter)
+    {
+        throw new InvalidFormatterException("Invalid formatter: $formatter");
     }
 }

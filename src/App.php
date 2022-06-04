@@ -11,7 +11,7 @@ class App
     /**
      * @throws \Exception
      */
-    public static function genDiff(string $file1, string $file2, ?string $format): string
+    public static function genDiff(string $file1, string $file2, ?string $format = null): string
     {
         try {
             $result = self::compare(
@@ -20,8 +20,6 @@ class App
             );
 
             return Formatter::format($result, $format);
-        } catch (NotCriticalException $e) {
-            return "WARNING: " . $e->getMessage() . PHP_EOL;
         } catch (\Exception $e) {
             throw $e;
         }
