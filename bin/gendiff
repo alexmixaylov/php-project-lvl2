@@ -22,8 +22,13 @@ foreach ($result as $k=>$v) {
     //echo $k.': '.json_encode($v).PHP_EOL;
 }
 
+$formatIndex = array_search('--format', $argv);
+$format = $formatIndex ? $argv[$formatIndex + 1] : null;
+$file1 =  $formatIndex ? $argv[$formatIndex + 2] : $argv[1];
+$file2 =  $formatIndex ? $argv[$formatIndex + 3] : $argv[2];
+
 try {
-    print_r(App::genDiff( $argv[1], $argv[2]) . PHP_EOL);
+    print_r(App::genDiff($file1, $file2, $format));
 } catch (Exception $e) {
     print_r($e->getMessage());
 }

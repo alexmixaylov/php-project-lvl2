@@ -4,23 +4,24 @@ namespace Hexlet\Code;
 
 use Hexlet\Code\Helper\Parsers;
 use Hexlet\Code\Exceptions\NotCriticalException;
+use Hexlet\Code\Helper\Formatter;
 
 class App
 {
     /**
      * @throws \Exception
      */
-    public static function genDiff($file1, $file2): string
+    public static function genDiff(string $file1, string $file2, ?string $format): string
     {
         try {
             $result = self::compare(
                 self::normalize(Parsers::parse($file1)),
                 self::normalize(Parsers::parse($file2))
             );
-            return '{' . PHP_EOL . implode(PHP_EOL, $result) . PHP_EOL . '}';
+
+            return Formatter::format($result, $format);
         } catch (NotCriticalException $e) {
-            print_r("WARNING: " . $e->getMessage() . PHP_EOL);
-            return '';
+            return "WARNING: " . $e->getMessage() . PHP_EOL;
         } catch (\Exception $e) {
             throw $e;
         }
@@ -71,5 +72,10 @@ class App
         };
 
         return $diff();
+    }
+
+    private static function formatOutput($result)
+    {
+        return '{' . PHP_EOL . implode(PHP_EOL, $result) . PHP_EOL . '}';
     }
 }
